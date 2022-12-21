@@ -1,0 +1,108 @@
+this is the some of the most important values to calculate in order 
+Weakcount is the number of squares in Player A’s area that cannot be protected by Player A’s pawns.
+For example, in Fig.4.2 the white player has 8 weak squares.
+• Enemyknightonweak is the number of knights of Player B that are in the weak squares of Player A.
+These weak squares are called outposts and best squares for knights because they can not be pushed
+back by enemy pawns. For example, in Fig.4.2 the white player has 1 knight on outposts on d5
+because d5 is a weak square for black.
+• Centerpawncount is the number of pawns of Player A that are in squares e4,e5,d4 or d5. Center
+pawns are important for controlling the center and decreasing enemy mobility. For example, in
+Fig.4.2 the white player has 1 pawn in the center.
+18
+• Kingpawnshield is the number of pawns of Player A adjacent to Player A’s king. Pawn shield is
+an important parameter for evaluating the king safety. For example, in Fig.4.2white king has 1
+adjacent paw.
+• Kingattacked is the material value of the pieces of the enemy that are acting on ones king’s adjacent
+squares. For example, in Fig.4.2 the material value of the pieces of the black player’s pieces that
+are acting on the white player’s king’s adjacent squares is 0.
+• Kingdefended is the material value of the pieces of the Player A that are acting on Player A’s king’s
+adjacent squares. For example, in Fig.4.2 the material value of the pieces of the white player’s
+pieces that are acting on the white player’s king’s adjacent squares is the sum of the values of Queen,
+2 Rooks and Knight.
+• Kingcastled returns 1 if Player A is castled to measure king safety. For example, in Fig. 4.2white
+king is castled.
+• Bishopmob is the number of squares that a bishop can go to. This type of parameters are calculated
+seperately for each bishop. For example, in Fig. 4.2the number of squares that the white bishop on
+d2 can go is 5.
+• Bishoponlarge parameter returns 1 if the bishop on the given square is one of the two large diagonals
+of the board. Bishops are stronger on the large diagonals because they have higher mobility and
+they are reaching the two central squares simultaneously controlling the center. For example, in Fig.
+4.2the black bishop on c6 is on a large diagonal.
+• Bishoppair returns 1 if Player A has two or more bishops. Bishop pairs are generally considered
+an advantage as to bishops can together cover all possible squares regardless of the color of the
+square. Bishop pairs are especially strong in open positions where there are no central pawns and
+the bishops can move freely to create threats. For example, in Fig. 4.2black player has the bishop
+pair.
+• Knightmob is the number of squares that a specific knight can go to. For example, in Fig. 4.2the
+number of squares that the white knight on f3 can go to is 5.
+• Knightsupport returns 1 if a given knight on a given square is supported by ones own pawn.
+Supported knights are strong because they can only be backfired by pawns and since they are
+supported they can stay in an important position for a long number of moves making it harder for
+the opponent to play around it. For example, in Fig. 4.2the knight on f3 is supported by a white
+pawn.
+• Knightperiphery0 returns 1 if a given knight is on the squares a1 to a8,a8 to h8,a1 to h1 or h1 to h8.
+This is the outest periphery and most of the times knights on these squares are weaker. For example,
+in Fig. 4.2the black knight on a6 is on periphery0.
+• Knightperiphery1 returns 1 if a given knight is on the squares b2 to b7,b7 to g7,b2 to g2 or g2 to g7.
+For example, in Fig. 4.2no knights are on periphery1.
+19
+• Knightperiphery2 returns 1 if a given knight is on the squares c3 to c6,c6 to f6,c3 to f3 or f3 to f6.
+For example, in Fig. 4.2the white knight on f3 is on periphery2.
+• Knightperiphery3 returns 1 if a given knight is on the squares e4, e5,d4 or d5. For example, in Fig.
+4.2the white knight on d5 is on periphery3.
+• Isopawn returns 1 if a given pawn has no neighboring pawns of the same color. Isolated pawns
+are generally considered as a weakness since they cannot be protected by pawns so they should be
+protected by other more valuable pieces. For example, in Fig. 4.2the pawn on e4 is isolated.
+• Doublepawn returns 1 if a pawn is doubled pawn. Doubled pawns are considered a disadvantage as
+they blocked each other and they are vulnerable to attacks. For example, in Fig. 4.2the black pawns
+on the c-column are doubled.
+• Passpawn returns 1 if for a given pawn there are no opposing pawns of the enemy on the neighboring
+columns and on the given pawn’s column ahead of the pawn. If a pawn is passed it is big threat for
+the opponent because the are no pawns on the way to prevent it from promoting. For example, in
+Fig. 4.2white pawn on a4 is a passed pawn.
+• Rookbhdpasspawn returns 1 if a rook of the same color is behind the passed pawn. If there is a rook
+behind a passed pawn it is easier to push to pawn forward as it is always protected by the rook and
+rook never gets in the way. For example, in Fig. 4.2the white pawn on a4 is passed and defended by
+the rook on a1.
+• Backwardpawn returns 1 if the neighboring pawns of a pawn are ahead of it. Backward pawns are
+the last pawn of a pawn chain and even though they are not isolated they can not be defended easily.
+So they are considered a disadvantage. For example, in Fig. 4.2the white pawn on g2 is a backward
+pawn.
+• Rankpassedpawn is the rank of the passed pawn. A passed pawn on rank 7 which means the pawn
+is one move away from promoting is a lot more dangerous compared to a passed pawn on its
+initial square. Passed pawns with higher ranks have higher priority thus they are an advantage. For
+example, in Fig. 4.2the a4 pawns rank is 4.
+• Blockedpawn returns 1 if a central pawn on column e or d on its initial square is blocked by its own
+piece which severely decreases the mobility of the pieces. In Fig. 4.2there are no blocked pawns.
+• Blockedpassedpawn returns 1 if a passed pawn of Player A is blocked by a piece of Player B which
+prevents it from moving closer to promotion. This is an advantage for the blocking side. The passed
+pawn on a4 is not blocked by any black pieces. If it is pushed to a5 however it will be considered
+blocked because there is a black knight on a6.
+• Rookopenfile returns 1 if a given rook is on a file with no pawns from either side. Rooks are stronger
+on open columns because they can move freely. For example, in Fig. 4.2the black rook on b2 in on
+an open file.
+• Rooksemiopenfile returns 1 if a given rook is on a file with no pawns from its own side. Rooks are
+strong on semi-open files as well. For example, in Fig. 4.2the white rook on f1 is on a semi open
+file.
+20
+• Rookclosedfile returns 1if a given rook is on a file with pawns from both sides. Rooks on closed
+files are considered a disadvantage as they have lower file mobility and no access to the important
+squares of the game especially in the middlegame and endgame.
+• Rookonseventh returns 1 if a given rook is on seventh rank from the Players perspective. For white
+that would be the rank 7 for black rank 2. Rooks on seventh rank are dangerous and a classical
+theme in chess for creating major threats at once. For example, in Fig. 4.2the black rook on b2 in
+on the seventh rank.
+• Rookmob returns the number of squares a rook can move to. For example, in Fig. 4.2the black rook
+on b2 has a mobility value of 9.
+• Rookcon returns 1 if there are no pieces between to rooks of the same color and they are on the
+same file or on the same rank. Connected rooks defend each other to create threats in the opposition
+area because they cannot be captured by queen or king. For example, in Fig. 4.2the whites rooks
+are connected.
+• Queenmob returns the number of squares a queen can move to.
+• Pawn value is the number of pawns of the Player A. These parameters are the simple material count
+parameters.
+• Knight value is the number of knights of the Player A.
+• Bishop value is the number of bishops of the Player A.
+• Rook value is the number of rooks of the Player A.
+• Queen value is the number of queens of the Player A.
+These evaluation parameters try to catch the subtleties of chess besides basic factors.
