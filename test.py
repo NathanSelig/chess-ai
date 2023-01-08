@@ -9,12 +9,13 @@ def count_isolated_pawns(board):
         # If the current square is not a pawn, skip it
         if piece is None or piece.piece_type != chess.PAWN:
             continue
-
+#need to find effeicent way to look at places where pawns are on the side 
     """ 
     o , o , o
     o , 1 , o
     o , o , o    
-    
+   what type of number means on the side like % or / by certian number need inverse for black if a
+   pawn is defending 
     |  o , o
     |  P , o
     |  o , o    
